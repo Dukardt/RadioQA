@@ -3,45 +3,45 @@ package ru.netology.javaqa;
 public class Radio {
     private int currentStation;
     private int currentVolume;
+    private int maxStation;
+    private int stationCount;
 
-    public void nextStation() {
-        if (currentStation != 9) {
+
+    public Radio() {
+        maxStation = 9;
+    }
+
+    public Radio(int stationCount) {
+        maxStation = stationCount - 1;
+
+    }
+
+
+    public void next() {
+        if (currentStation < maxStation) {
             currentStation++;
         } else {
             currentStation = 0;
         }
     }
 
-    public void prevStation() {
+    public void prev() {
+
         if (currentStation != 0) {
+
             currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = maxStation;
         }
-    }
 
-    public void increaseVolume() {
-        if (currentVolume < 100) {
-            currentVolume = currentVolume + 1;
-        }
-    }
-
-    public void decreaseVolume() {
-        if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
-        }
     }
 
     public int getCurrentStation() {
-
         return currentStation;
     }
 
     public void setCurrentStation(int currentStation) {
-        if (currentStation < 0) {
-            return;
-        }
-        if (currentStation > 9) {
+        if (currentStation > maxStation) {
             return;
         }
         this.currentStation = currentStation;
@@ -52,12 +52,28 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume < 0) {
-            return;
-        }
-        if (currentVolume > 100) {
+        if (currentVolume <= 0) {
             return;
         }
         this.currentVolume = currentVolume;
     }
+
+    public void increaseVolume() {
+        if (currentVolume != 10) {
+            currentVolume++;
+        } else {
+            currentVolume = 10;
+        }
+    }
+
+    public void decrease() {
+
+        if (currentVolume != 0) {
+            currentVolume--;
+        } else {
+            currentVolume = 0;
+        }
+
+    }
+
 }
